@@ -72,6 +72,36 @@ are propagated to the client. Before enabling the ion gauge or degas, observe
 the manual's pressure limits and filament precautions. Startup never enables
 either function and never performs gauge calibration.
 
+## OPI generation
+
+Generate a Phoebus operator interface using
+[opi/generate_opi.py](opi/generate_opi.py). From this directory, run:
+
+```sh
+uv run --with phoebusgen python opi/generate_opi.py
+```
+
+`--with phoebusgen` supplies the generator dependency without adding it to
+the server's dependencies. The command writes `opi/B-RAX_33000.bob`,
+overwriting any existing file. Open this file in Phoebus Display Builder
+and run it with the PVAccess server available.
+
+The default PV prefix is `pva://vac:brax:0:`. The display includes server
+controls, communication status, pressure readings and raw responses,
+ion-gauge controls with separate readbacks, and relay states.
+
+To use another server instance, customize the title and pass the full PV
+prefix, including `pva://` and the trailing colon:
+
+```sh
+uv run --with phoebusgen python opi/generate_opi.py --title "B-RAX 3300 instance 1" --diagnostics pva://vac:brax:1:
+```
+
+Use `--diagnostics` only when the server also runs with `--diagnostics`;
+it adds emission current, filament voltage/current, and ion current
+readbacks. The title and prefix options do not change the output filename.
+Generation does not require a running server or a hardware connection.
+
 ## Tests
 
 ```sh

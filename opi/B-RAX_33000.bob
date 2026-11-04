@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <display version="2.0.0">
+    <name>BRAX</name>
+    <width>1080</width>
+    <height>760</height>
+    <widget type="label" version="2.0.0">
+      <name>title</name>
+      <x>20</x>
+      <y>10</y>
+      <width>360</width>
+      <height>30</height>
+      <text>BRAX</text>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Firmware_lbl</name>
+      <x>400</x>
+      <y>14</y>
+      <width>80</width>
+      <height>20</height>
+      <text>Firmware:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Firmware</name>
+      <x>480</x>
+      <y>14</y>
+      <width>280</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Firmware</pv_name>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>dateTime</name>
+      <x>800</x>
+      <y>14</y>
+      <width>260</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:dateTime</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>srvStatus_lbl</name>
+      <x>20</x>
+      <y>45</y>
+      <width>60</width>
+      <height>20</height>
+      <text>Server:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>srvStatus</name>
+      <x>80</x>
+      <y>45</y>
+      <width>980</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:status</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>state_lbl</name>
+      <x>20</x>
+      <y>85</y>
+      <width>65</width>
+      <height>20</height>
+      <text>Run/Stop:</text>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>server</name>
+      <x>90</x>
+      <y>85</y>
+      <width>110</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:server</pv_name>
+      <items>
+        <item>Start</item>
+        <item>Stop</item>
+        <item>Clear</item>
+        <item>Exit</item>
+        <item>Started</item>
+        <item>Stopped</item>
+        <item>Exited</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>sleep_lbl</name>
+      <x>410</x>
+      <y>85</y>
+      <width>40</width>
+      <height>20</height>
+      <text>Sleep:</text>
+    </widget>
+    <widget type="textentry" version="2.0.0">
+      <name>sleep</name>
+      <x>450</x>
+      <y>85</y>
+      <width>50</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:sleep</pv_name>
+      <precision>3</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>cycleTime_lbl</name>
+      <x>510</x>
+      <y>85</y>
+      <width>50</width>
+      <height>20</height>
+      <text>Period:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>cycleTime</name>
+      <x>560</x>
+      <y>85</y>
+      <width>60</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:cycleTime</pv_name>
+      <precision>3</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>hb_lbl</name>
+      <x>640</x>
+      <y>85</y>
+      <width>30</width>
+      <height>20</height>
+      <text>HB:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>HEARTBEAT</name>
+      <x>670</x>
+      <y>85</y>
+      <width>70</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:HEARTBEAT</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>host_lbl</name>
+      <x>20</x>
+      <y>125</y>
+      <width>80</width>
+      <height>20</height>
+      <text>Gateway:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>host</name>
+      <x>100</x>
+      <y>125</y>
+      <width>180</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:host</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>port_lbl</name>
+      <x>300</x>
+      <y>125</y>
+      <width>40</width>
+      <height>20</height>
+      <text>Port:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>port</name>
+      <x>340</x>
+      <y>125</y>
+      <width>70</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:port</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Connected_lbl</name>
+      <x>440</x>
+      <y>125</y>
+      <width>90</width>
+      <height>20</height>
+      <text>Connected:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Connected</name>
+      <x>530</x>
+      <y>125</y>
+      <width>50</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Connected</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>PressureUnits_lbl</name>
+      <x>620</x>
+      <y>125</y>
+      <width>50</width>
+      <height>20</height>
+      <text>Units:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>PressureUnits</name>
+      <x>670</x>
+      <y>125</y>
+      <width>90</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:PressureUnits</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>CommStatus_lbl</name>
+      <x>20</x>
+      <y>155</y>
+      <width>120</width>
+      <height>20</height>
+      <text>Communication:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CommStatus</name>
+      <x>140</x>
+      <y>155</y>
+      <width>920</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:CommStatus</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>channel_heading</name>
+      <x>20</x>
+      <y>195</y>
+      <width>90</width>
+      <height>20</height>
+      <text>Gauge</text>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>pressure_heading</name>
+      <x>120</x>
+      <y>195</y>
+      <width>180</width>
+      <height>20</height>
+      <text>Pressure</text>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>raw_heading</name>
+      <x>330</x>
+      <y>195</y>
+      <width>200</width>
+      <height>20</height>
+      <text>Raw response</text>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>validity_heading</name>
+      <x>560</x>
+      <y>195</y>
+      <width>500</width>
+      <height>20</height>
+      <text>Measurement status</text>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>IG_lbl</name>
+      <x>20</x>
+      <y>225</y>
+      <width>90</width>
+      <height>20</height>
+      <text>IG</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>IGPressure</name>
+      <x>120</x>
+      <y>225</y>
+      <width>180</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:IGPressure</pv_name>
+      <format>2</format>
+      <precision>3</precision>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>IGPressureRaw</name>
+      <x>330</x>
+      <y>225</y>
+      <width>200</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:IGPressureRaw</pv_name>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>IGStatus</name>
+      <x>560</x>
+      <y>225</y>
+      <width>500</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:IGStatus</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>CG1_lbl</name>
+      <x>20</x>
+      <y>255</y>
+      <width>90</width>
+      <height>20</height>
+      <text>CG1</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CG1Pressure</name>
+      <x>120</x>
+      <y>255</y>
+      <width>180</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:CG1Pressure</pv_name>
+      <format>2</format>
+      <precision>3</precision>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CG1PressureRaw</name>
+      <x>330</x>
+      <y>255</y>
+      <width>200</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:CG1PressureRaw</pv_name>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CG1Status</name>
+      <x>560</x>
+      <y>255</y>
+      <width>500</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:CG1Status</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>CG2_lbl</name>
+      <x>20</x>
+      <y>285</y>
+      <width>90</width>
+      <height>20</height>
+      <text>CG2</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CG2Pressure</name>
+      <x>120</x>
+      <y>285</y>
+      <width>180</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:CG2Pressure</pv_name>
+      <format>2</format>
+      <precision>3</precision>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CG2PressureRaw</name>
+      <x>330</x>
+      <y>285</y>
+      <width>200</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:CG2PressureRaw</pv_name>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>CG2Status</name>
+      <x>560</x>
+      <y>285</y>
+      <width>500</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:CG2Status</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>AI_lbl</name>
+      <x>20</x>
+      <y>315</y>
+      <width>90</width>
+      <height>20</height>
+      <text>AI</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>AIPressure</name>
+      <x>120</x>
+      <y>315</y>
+      <width>180</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:AIPressure</pv_name>
+      <format>2</format>
+      <precision>3</precision>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>AIPressureRaw</name>
+      <x>330</x>
+      <y>315</y>
+      <width>200</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:AIPressureRaw</pv_name>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>AIStatus</name>
+      <x>560</x>
+      <y>315</y>
+      <width>500</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:AIStatus</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>controls_heading</name>
+      <x>20</x>
+      <y>365</y>
+      <width>180</width>
+      <height>20</height>
+      <text>Ion gauge</text>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>request_heading</name>
+      <x>230</x>
+      <y>365</y>
+      <width>130</width>
+      <height>20</height>
+      <text>Requested</text>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>readback_heading</name>
+      <x>400</x>
+      <y>365</y>
+      <width>180</width>
+      <height>20</height>
+      <text>Readback</text>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>IGEnable_lbl</name>
+      <x>20</x>
+      <y>395</y>
+      <width>190</width>
+      <height>20</height>
+      <text>Ion gauge enable:</text>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>IGEnable</name>
+      <x>230</x>
+      <y>395</y>
+      <width>130</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:IGEnable</pv_name>
+      <items>
+        <item>Off</item>
+        <item>On</item>
+      </items>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>IGEnabled</name>
+      <x>400</x>
+      <y>395</y>
+      <width>300</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:IGEnabled</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Degas_lbl</name>
+      <x>20</x>
+      <y>425</y>
+      <width>190</width>
+      <height>20</height>
+      <text>Degas:</text>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Degas</name>
+      <x>230</x>
+      <y>425</y>
+      <width>130</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Degas</pv_name>
+      <items>
+        <item>Off</item>
+        <item>On</item>
+      </items>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>DegasActive</name>
+      <x>400</x>
+      <y>425</y>
+      <width>300</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:DegasActive</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Emission_lbl</name>
+      <x>20</x>
+      <y>455</y>
+      <width>190</width>
+      <height>20</height>
+      <text>Emission current:</text>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Emission</name>
+      <x>230</x>
+      <y>455</y>
+      <width>130</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Emission</pv_name>
+      <items>
+        <item>100 uA</item>
+        <item>4 mA</item>
+        <item>10 mA</item>
+      </items>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>EmissionReadback</name>
+      <x>400</x>
+      <y>455</y>
+      <width>300</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:EmissionReadback</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Filament_lbl</name>
+      <x>20</x>
+      <y>485</y>
+      <width>190</width>
+      <height>20</height>
+      <text>Filament:</text>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Filament</name>
+      <x>230</x>
+      <y>485</y>
+      <width>130</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Filament</pv_name>
+      <items>
+        <item>1</item>
+        <item>2</item>
+      </items>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>FilamentReadback</name>
+      <x>400</x>
+      <y>485</y>
+      <width>300</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:FilamentReadback</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>IGDeviceStatus_lbl</name>
+      <x>20</x>
+      <y>525</y>
+      <width>190</width>
+      <height>20</height>
+      <text>Ion gauge status:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>IGDeviceStatus</name>
+      <x>230</x>
+      <y>525</y>
+      <width>830</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:IGDeviceStatus</pv_name>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>RelayMask_lbl</name>
+      <x>20</x>
+      <y>565</y>
+      <width>100</width>
+      <height>20</height>
+      <text>Relay mask:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>RelayMask</name>
+      <x>120</x>
+      <y>565</y>
+      <width>80</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:RelayMask</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Relay1_lbl</name>
+      <x>20</x>
+      <y>605</y>
+      <width>80</width>
+      <height>20</height>
+      <text>Relay 1:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Relay1</name>
+      <x>105</x>
+      <y>605</y>
+      <width>60</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Relay1</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Relay2_lbl</name>
+      <x>190</x>
+      <y>605</y>
+      <width>80</width>
+      <height>20</height>
+      <text>Relay 2:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Relay2</name>
+      <x>275</x>
+      <y>605</y>
+      <width>60</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Relay2</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Relay3_lbl</name>
+      <x>360</x>
+      <y>605</y>
+      <width>80</width>
+      <height>20</height>
+      <text>Relay 3:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Relay3</name>
+      <x>445</x>
+      <y>605</y>
+      <width>60</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Relay3</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Relay4_lbl</name>
+      <x>530</x>
+      <y>605</y>
+      <width>80</width>
+      <height>20</height>
+      <text>Relay 4:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Relay4</name>
+      <x>615</x>
+      <y>605</y>
+      <width>60</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Relay4</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Relay5_lbl</name>
+      <x>700</x>
+      <y>605</y>
+      <width>80</width>
+      <height>20</height>
+      <text>Relay 5:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Relay5</name>
+      <x>785</x>
+      <y>605</y>
+      <width>60</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Relay5</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Relay6_lbl</name>
+      <x>870</x>
+      <y>605</y>
+      <width>80</width>
+      <height>20</height>
+      <text>Relay 6:</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Relay6</name>
+      <x>955</x>
+      <y>605</y>
+      <width>60</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:Relay6</pv_name>
+      <format>1</format>
+      <precision>0</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>diagnostics_heading</name>
+      <x>20</x>
+      <y>650</y>
+      <width>200</width>
+      <height>20</height>
+      <text>Diagnostics</text>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>EmissionCurrent_lbl</name>
+      <x>20</x>
+      <y>680</y>
+      <width>210</width>
+      <height>20</height>
+      <text>Emission current (A):</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>EmissionCurrent</name>
+      <x>240</x>
+      <y>680</y>
+      <width>230</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:EmissionCurrent</pv_name>
+      <format>2</format>
+      <precision>3</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>FilamentVoltage_lbl</name>
+      <x>560</x>
+      <y>680</y>
+      <width>210</width>
+      <height>20</height>
+      <text>Filament voltage (V):</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>FilamentVoltage</name>
+      <x>780</x>
+      <y>680</y>
+      <width>230</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:FilamentVoltage</pv_name>
+      <format>2</format>
+      <precision>3</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>FilamentCurrent_lbl</name>
+      <x>20</x>
+      <y>710</y>
+      <width>210</width>
+      <height>20</height>
+      <text>Filament current (A):</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>FilamentCurrent</name>
+      <x>240</x>
+      <y>710</y>
+      <width>230</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:FilamentCurrent</pv_name>
+      <format>2</format>
+      <precision>3</precision>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>IonCurrent_lbl</name>
+      <x>560</x>
+      <y>710</y>
+      <width>210</width>
+      <height>20</height>
+      <text>Ion current (A):</text>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>IonCurrent</name>
+      <x>780</x>
+      <y>710</y>
+      <width>230</width>
+      <height>20</height>
+      <pv_name>pva://vac:brax:0:IonCurrent</pv_name>
+      <format>2</format>
+      <precision>3</precision>
+    </widget>
+  </display>

@@ -1,5 +1,5 @@
 [project]
-name = "epicsdev-vac"
+name = "epicsdev_vac"
 version = "0.0.2"
 description = "PVAccess server for various vacuum gauge controllers"
 readme = "README.md"
@@ -13,12 +13,14 @@ dependencies = [
     "pyvisa-py>=0.7",
 ]
 
-[project.scripts]
-epicsdev-vac-brax = "epicsdev_vac_brax.__main__:main"
-
 [tool.uv.build-backend]
 module-root = ""
 
 [build-system]
 requires = ["uv_build>=0.13.1,<0.14.0"]
 build-backend = "uv_build"
+
+[project.urls]
+"Homepage" = "https://github.com/eicorg/epicsdev_vac"
+"Bug Tracker" = "https://github.com/eicorg/epicsdev_vac"
+
