@@ -1,9 +1,10 @@
-# EPICS PVAccess server for various vacuum gauge controller
-Currently it is being developed and tested with B-RAX 3300
+# EPICS PVAccess server for various vacuum gauge controllers
+Instruments supported:
+ - B-RAX 3000 series from InstruTech.
+ - Granville-Philips 307 and 358 .
 
-EPICS PVAccess support using the native InstruTech RS232/RS485 protocol in
-section 8 of `misc/programming_manual.pdf`. Communication uses PyVISA's
-pure-Python backend and a TCP socket to a transparent serial gateway.
+Communication uses PyVISA's pure-Python backend, and supports following interfaces:
+`R232, RS485 and TCP socket to a transparent serial gateway
 
 ## Running
 
@@ -14,26 +15,21 @@ uv sync
 uv run epicsdev_vac
 ```
 
-Defaults: `TCPIP0::192.168.27.10::1::SOCKET`, native RS232, Torr pressure
-units, two-second timeout, and PV prefix `vac:brax:0:`.
-
-Set the controller COMM TYPE to native `RS232`, not a GP compatibility mode.
-Configure the serial gateway to match the controller's serial settings
-(factory default: 19200 baud, 8 data bits, no parity, 1 stop bit). Commands
-and replies end with CR, not LF. The gateway must provide a raw, transparent
-socket stream, not a Telnet negotiation or login session.
-
-For native RS485 at node 01:
-
-```sh
-uv run epicsdev-vac-brax --address 01 --units mbar --baud 19200
-```
-
-`--baud` controls command pacing using the repetition intervals in section 8.1;
-it does not configure the gateway. `--units` must match the controller display:
+Commands are paced at 0.1-second intervals; configure the gateway baud separately.
+`--units` must match the controller display for the native command set:
 the native protocol returns readings in display units but does not provide a
 unit query. No unit conversion or hardware unit change is performed.
-Use `--host`, `--port`, `--timeout`, and `--instance` to override the defaults.
+Use `--resource` (or `-r`), `--timeout`, and `--instance` to override the defaults.
+For example: `uv run epicsdev_vac --resource TCPIP0::192.168.27.10::1::SOCKET`.
+For a direct serial connection, use an ASRL resource and `--baudrate`
+(default: 19200), matching the controller's configured speed:
+
+```sh
+uv run epicsdev_vac --resource ASRL/dev/ttyUSB0::INSTR --baudrate 9600
+```
+
+`--baudrate` configures serial resources only; TCPIP and other non-serial
+resources ignore it. Serial gateway settings must still be configured separately.
 `--diagnostics` enables research measurements added after January 2017.
 
 Autosave follows epicsdev defaults. Select a writable directory with
@@ -43,11 +39,13 @@ requested value, while separate readbacks show the measured device state.
 
 ## Device PVs
 
-Names below follow the configured prefix. Standard epicsdev server controls,
+The table below describes the native `BRAX_3000` mode. Names follow the
+configured prefix. Standard epicsdev server controls,
 heartbeat, timing, and status PVs are also available.
 
 | PV | Meaning |
 | --- | --- |
+| `resource` | Configured VISA resource string |
 | `IGPressure`, `CG1Pressure`, `CG2Pressure`, `AIPressure` | Double-precision absolute pressure |
 | `<channel>PressureRaw`, `<channel>Status` | Raw pressure payload and measurement validity |
 | `PressureUnits` | Configured display units |
@@ -82,31 +80,65 @@ uv run --with phoebusgen python opi/generate_opi.py
 ```
 
 `--with phoebusgen` supplies the generator dependency without adding it to
-the server's dependencies. The command writes `opi/B-RAX_33000.bob`,
-overwriting any existing file. Open this file in Phoebus Display Builder
-and run it with the PVAccess server available.
+the server's dependencies. Generation does not require a running server or
+a hardware connection. Open the generated `.bob` file in Phoebus Display
+Builder and run it with the PVAccess server available.
 
-The default PV prefix is `pva://vac:brax:0:`. The display includes server
-controls, communication status, pressure readings and raw responses,
-ion-gauge controls with separate readbacks, and relay states.
+| Option | Meaning | Default |
+| --- | --- | --- |
+| `-m`, `--model` | `B-RAX_3000`, `GP307`, or `GP358` | `B-RAX_3000` |
+| `-i`, `--instance` | Instance used in the title, PV prefix, and filename | `0` |
+| `-t`, `--title` | Custom screen title | `<model> instance <instance>` |
+| `--diagnostics` | Include native B-RAX research diagnostic widgets | Disabled |
+| `prefix` | Optional full PV prefix, including `pva://` and trailing colon | `pva://vac:<model>:<instance>:` |
 
-To use another server instance, customize the title and pass the full PV
-prefix, including `pva://` and the trailing colon:
+Output is written beside the generator as `opi/<model>_<instance>.bob`,
+overwriting an existing file with that name. A custom title or prefix does
+not change the filename. The default command writes `opi/B-RAX_3000_0.bob`
+and uses `pva://vac:B-RAX_3000:0:`.
+
+The screen prefix must match the IOC's actual prefix. For an IOC using the
+default `vac:brax:0:` prefix, pass it explicitly:
 
 ```sh
-uv run --with phoebusgen python opi/generate_opi.py --title "B-RAX 3300 instance 1" --diagnostics pva://vac:brax:1:
+uv run --with phoebusgen python opi/generate_opi.py pva://vac:brax:0:
 ```
 
-Use `--diagnostics` only when the server also runs with `--diagnostics`;
-it adds emission current, filament voltage/current, and ion current
-readbacks. The title and prefix options do not change the output filename.
-Generation does not require a running server or a hardware connection.
+For GP307, select the GP layout and the matching IOC prefix:
+
+```sh
+uv run --with phoebusgen python opi/generate_opi.py --model GP307 pva://vac:brax:0:
+```
+
+This writes `opi/GP307_0.bob` with IG/CG1/CG2 pressures, separate filament
+1/2 controls, degas control/readback, and relay states. The former `--GP307`
+and `--GP358` flags have been replaced by `--model`.
+
+Current limitation: `--model GP358` selects a GP-sized screen but still
+includes some native-only widgets. For a GP358 IOC, use `--model GP307`
+with a custom title and the GP358 IOC's actual prefix, for example:
+
+```sh
+uv run --with phoebusgen python opi/generate_opi.py --model GP307 --title "GP358 instance 0" pva://vac:GP358:0:
+```
+
+For a native B-RAX instance with diagnostics:
+
+```sh
+uv run --with phoebusgen python opi/generate_opi.py --model B-RAX_3000 --instance 1 --title "B-RAX 3000 instance 1" --diagnostics pva://vac:brax:1:
+```
+
+This writes `opi/B-RAX_3000_1.bob`. Use `--diagnostics` only for a native
+B-RAX IOC exposing emission current, filament voltage/current, and ion
+current PVs. GP command sets do not expose these diagnostic PVs.
 
 ## Tests
 
 ```sh
 uv run python -m unittest discover -s tests -v
+uv run --with phoebusgen python -m unittest discover -s tests -p test_opi.py -v
 ```
 
 Tests use a local TCP simulator with real PyVISA socket sessions, plus an
 isolated PVAccess server/client. They do not connect to or control hardware.
+Screen tests require the optional `phoebusgen` dependency and otherwise skip.

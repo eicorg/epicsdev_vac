@@ -1,10 +1,10 @@
 [project]
 name = "epicsdev_vac"
-version = "0.0.2"
-description = "PVAccess server for various vacuum gauge controllers"
+version = "0.0.3"
+description = "EPICS PVAccess server for various vacuum gauge controllers"
 readme = "README.md"
 authors = [
-    { name = "Sukhanov, Andrei", email = "sukhanov@bnl.gov" }
+    { name = "Sukhanov, Andrey", email = "sukhanov@bnl.gov" }
 ]
 requires-python = ">=3.11"
 dependencies = [
